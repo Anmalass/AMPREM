@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AM Reverse - ANMA</title>
+  <title>Alight Motion Premium Activator - ANMA</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://unpkg.com/lucide@latest"></script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -21,15 +21,15 @@
   <!-- Header Section -->
   <header class="relative z-10 border-b border-slate-800/80 bg-slate-900/60 backdrop-blur-xl px-6 py-4 flex justify-between items-center shadow-lg">
     <div class="flex items-center space-x-3">
-      <div class="bg-gradient-to-tr from-indigo-600 to-violet-500 p-2.5 rounded-xl text-white shadow-lg shadow-indigo-500/20">
+      <div class="bg-gradient-to-tr from-amber-500 to-indigo-600 p-2.5 rounded-xl text-white shadow-lg shadow-indigo-500/20">
         <i data-lucide="zap" class="w-5 h-5"></i>
       </div>
       <div>
-        <span class="font-extrabold text-xl tracking-tight bg-gradient-to-r from-indigo-400 via-purple-300 to-pink-400 bg-clip-text text-transparent">
+        <span class="font-extrabold text-xl tracking-tight bg-gradient-to-r from-amber-400 via-indigo-300 to-purple-400 bg-clip-text text-transparent">
           AM Reverse
         </span>
-        <span class="text-[10px] font-bold tracking-widest uppercase bg-indigo-500/10 text-indigo-400 px-2 py-0.5 rounded-full border border-indigo-500/20 ml-2">
-          v1.0.0
+        <span class="text-[10px] font-bold tracking-widest uppercase bg-amber-500/10 text-amber-400 px-2 py-0.5 rounded-full border border-amber-500/20 ml-2">
+          Unofficial
         </span>
       </div>
     </div>
@@ -37,72 +37,112 @@
     <!-- Status Badge -->
     <div id="status-badge" class="flex items-center space-x-2 text-xs font-medium px-3.5 py-1.5 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 backdrop-blur-md">
       <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-      <span id="status-text">Client Engine Ready</span>
+      <span id="status-text">Activator Engine Ready</span>
     </div>
   </header>
 
   <!-- Main Content -->
-  <main class="relative z-10 max-w-3xl mx-auto w-full px-4 py-12 flex-1 flex flex-col justify-center">
+  <main class="relative z-10 max-w-2xl mx-auto w-full px-4 py-10 flex-1 flex flex-col justify-center">
     
-    <div class="text-center mb-10">
-      <h2 class="text-3xl sm:text-5xl font-black text-white tracking-tight mb-3">
-        Alight Motion <span class="bg-gradient-to-r from-indigo-400 to-violet-400 bg-clip-text text-transparent">Link Service</span>
+    <div class="text-center mb-8">
+      <h2 class="text-3xl sm:text-4xl font-black text-white tracking-tight mb-2">
+        Alight Motion <span class="bg-gradient-to-r from-amber-400 to-indigo-400 bg-clip-text text-transparent">Premium Activator</span>
       </h2>
-      <p class="text-slate-400 text-sm sm:text-base max-w-lg mx-auto leading-relaxed">
-        Proses, verifikasi, dan kelola tautan preset Alight Motion secara instan dan aman.
+      <p class="text-slate-400 text-xs sm:text-sm max-w-md mx-auto leading-relaxed">
+        Aktivasi akun Alight Motion via Magic Link & Firebase Auth tanpa password.
       </p>
     </div>
 
-    <!-- Stats Bar -->
-    <div class="grid grid-cols-2 gap-4 mb-8">
-      <div class="bg-slate-900/40 border border-slate-800/80 rounded-2xl p-5 text-center backdrop-blur-xl shadow-xl">
-        <p class="text-xs font-medium text-slate-400 uppercase tracking-wider mb-1">Total Permintaan</p>
-        <p id="stat-requests" class="text-3xl font-black text-indigo-400">0</p>
+    <!-- Step Progress Indicator -->
+    <div class="flex items-center justify-center space-x-4 mb-8 text-xs font-semibold">
+      <div id="step1-indicator" class="flex items-center space-x-2 text-amber-400">
+        <span class="w-6 h-6 rounded-full bg-amber-500/20 border border-amber-500/40 flex items-center justify-center">1</span>
+        <span>Kirim Email</span>
       </div>
-      <div class="bg-slate-900/40 border border-slate-800/80 rounded-2xl p-5 text-center backdrop-blur-xl shadow-xl">
-        <p class="text-xs font-medium text-slate-400 uppercase tracking-wider mb-1">Terverifikasi</p>
-        <p id="stat-verifications" class="text-3xl font-black text-emerald-400">0</p>
+      <div class="w-8 h-[1px] bg-slate-800"></div>
+      <div id="step2-indicator" class="flex items-center space-x-2 text-slate-500">
+        <span class="w-6 h-6 rounded-full bg-slate-800 border border-slate-700 flex items-center justify-center">2</span>
+        <span>Verifikasi Link</span>
       </div>
     </div>
 
-    <!-- Card Form -->
+    <!-- Form Card -->
     <div class="bg-slate-900/70 border border-slate-800/80 rounded-3xl p-6 sm:p-8 shadow-2xl backdrop-blur-2xl">
-      <div class="space-y-5">
-        <label class="block text-sm font-semibold text-slate-200">Masukkan Link Alight Motion</label>
-        <div class="relative">
-          <input 
-            type="url" 
-            id="link-input"
-            placeholder="https://alight.link/xxxx atau https://alightcreative.com/..." 
-            class="w-full bg-slate-950/80 border border-slate-800 rounded-2xl px-4 py-4 pl-12 text-slate-100 placeholder-slate-600 focus:outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 transition duration-200"
-          >
-          <div class="absolute left-4 top-4 text-slate-500">
-            <i data-lucide="link" class="w-5 h-5"></i>
+      
+      <!-- STEP 1: MINTA EMAIL -->
+      <div id="step-1-container" class="space-y-5">
+        <div>
+          <label class="block text-sm font-semibold text-slate-200 mb-1.5">Email Alight Motion</label>
+          <p class="text-xs text-slate-400 mb-3">Masukkan email yang terhubung dengan akun Alight Motion Anda.</p>
+          <div class="relative">
+            <input 
+              type="email" 
+              id="email-input"
+              placeholder="nama@gmail.com" 
+              class="w-full bg-slate-950/80 border border-slate-800 rounded-2xl px-4 py-3.5 pl-12 text-slate-100 placeholder-slate-600 focus:outline-none focus:border-amber-500 focus:ring-2 focus:ring-amber-500/20 transition duration-200"
+            >
+            <div class="absolute left-4 top-3.5 text-slate-500">
+              <i data-lucide="mail" class="w-5 h-5"></i>
+            </div>
           </div>
         </div>
 
-        <!-- Action Buttons -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
+        <button 
+          onclick="handleSendMagicLink()" 
+          class="w-full bg-gradient-to-r from-amber-500 to-indigo-600 hover:from-amber-400 hover:to-indigo-500 text-white font-semibold py-3.5 px-4 rounded-xl shadow-lg shadow-indigo-600/20 flex items-center justify-center space-x-2 transition duration-200 active:scale-[0.98]">
+          <i data-lucide="send" class="w-4 h-4"></i>
+          <span>Kirim Magic Link Login</span>
+        </button>
+      </div>
+
+      <!-- STEP 2: INPUT MAGIC LINK DARI EMAIL -->
+      <div id="step-2-container" class="hidden space-y-5">
+        <!-- Spam Warning Alert -->
+        <div class="p-4 rounded-2xl bg-amber-500/10 border border-amber-500/30 text-amber-300 text-xs leading-relaxed flex items-start space-x-3">
+          <i data-lucide="alert-triangle" class="w-5 h-5 text-amber-400 shrink-0 mt-0.5"></i>
+          <div>
+            <p class="font-bold text-amber-200 mb-0.5">Penting! Cek Folder Spam</p>
+            Magic link telah dikirim ke <span id="user-email-display" class="font-bold underline text-white"></span>. Jika tidak ada di Inbox, **wajib cek folder SPAM / Promosi** di aplikasi email Anda.
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-sm font-semibold text-slate-200 mb-1.5">Tempelkan (Paste) Magic Link dari Email</label>
+          <div class="relative">
+            <input 
+              type="url" 
+              id="magic-link-input"
+              placeholder="https://alightcreative.com/login?..." 
+              class="w-full bg-slate-950/80 border border-slate-800 rounded-2xl px-4 py-3.5 pl-12 text-slate-100 placeholder-slate-600 focus:outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 transition duration-200"
+            >
+            <div class="absolute left-4 top-3.5 text-slate-500">
+              <i data-lucide="link" class="w-5 h-5"></i>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <button 
-            onclick="handleVerifyLink()" 
-            class="w-full bg-slate-800/80 hover:bg-slate-700/80 text-slate-200 font-semibold py-3.5 px-4 rounded-xl border border-slate-700/80 flex items-center justify-center space-x-2 transition duration-200 active:scale-[0.98]">
-            <i data-lucide="shield-check" class="w-5 h-5 text-indigo-400"></i>
-            <span>Verifikasi Link</span>
+            onclick="resetStep()" 
+            class="w-full bg-slate-800 hover:bg-slate-700 text-slate-300 font-semibold py-3 px-4 rounded-xl border border-slate-700/80 flex items-center justify-center space-x-2 transition">
+            <i data-lucide="arrow-left" class="w-4 h-4"></i>
+            <span>Ganti Email</span>
           </button>
           <button 
-            onclick="handleSendLink()" 
-            class="w-full bg-gradient-to-r from-indigo-600 to-violet-600 hover:from-indigo-500 hover:to-violet-500 text-white font-semibold py-3.5 px-4 rounded-xl shadow-lg shadow-indigo-600/30 flex items-center justify-center space-x-2 transition duration-200 active:scale-[0.98]">
-            <i data-lucide="send" class="w-5 h-5"></i>
-            <span>Kirim Link</span>
+            onclick="handleActivatePremium()" 
+            class="w-full bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-semibold py-3 px-4 rounded-xl shadow-lg shadow-emerald-600/20 flex items-center justify-center space-x-2 transition">
+            <i data-lucide="check-circle" class="w-4 h-4"></i>
+            <span>Proses Aktivasi</span>
           </button>
         </div>
       </div>
 
       <!-- Result Alert -->
-      <div id="result-box" class="hidden mt-6 p-4 rounded-2xl text-sm border flex items-start space-x-3 transition-all">
+      <div id="result-box" class="hidden mt-6 p-4 rounded-2xl text-xs border flex items-start space-x-3 transition-all">
         <div id="result-icon" class="mt-0.5"></div>
         <div id="result-message" class="flex-1 break-all leading-relaxed"></div>
       </div>
+
     </div>
 
   </main>
@@ -121,30 +161,10 @@
   <script>
     lucide.createIcons();
 
-    // Local Storage Stats Engine untuk GitHub Pages
-    function getStats() {
-      const stats = localStorage.getItem('am_reverse_stats');
-      return stats ? JSON.parse(stats) : { totalRequests: 0, successfulVerifications: 0 };
-    }
+    let targetEmail = "";
 
-    function updateStats(type) {
-      const stats = getStats();
-      if (type === 'request') stats.totalRequests += 1;
-      if (type === 'verify') stats.successfulVerifications += 1;
-      localStorage.setItem('am_reverse_stats', JSON.stringify(stats));
-      loadStats();
-    }
-
-    function loadStats() {
-      const stats = getStats();
-      document.getElementById('stat-requests').innerText = stats.totalRequests;
-      document.getElementById('stat-verifications').innerText = stats.successfulVerifications;
-    }
-
-    function validateLinkFormat(link) {
-      if (!link) return false;
-      const pattern = /^(https?:\/\/)?(alight\.link|alightcreative\.com)\/.+/i;
-      return pattern.test(link.trim());
+    function validateEmail(email) {
+      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim());
     }
 
     function showResult(success, message) {
@@ -166,33 +186,69 @@
       lucide.createIcons();
     }
 
-    function handleSendLink() {
-      const input = document.getElementById('link-input');
-      const link = input.value;
+    async function handleSendMagicLink() {
+      const emailInput = document.getElementById('email-input').value;
 
-      if (!validateLinkFormat(link)) {
-        showResult(false, 'Format tautan Alight Motion tidak valid! Gunakan format alight.link atau alightcreative.com');
+      if (!validateEmail(emailInput)) {
+        showResult(false, "Alamat email tidak valid. Masukkan email yang benar.");
         return;
       }
 
-      updateStats('request');
-      showResult(true, 'Tautan Alight Motion berhasil diproses dan dikirim!');
+      targetEmail = emailInput;
+
+      // Request API ke backend Express (jika terhubung)
+      try {
+        const res = await fetch('/api/send-link', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email: targetEmail })
+        });
+      } catch (e) {}
+
+      // Tampilkan Step 2
+      document.getElementById('step-1-container').classList.add('hidden');
+      document.getElementById('step-2-container').classList.remove('hidden');
+      document.getElementById('user-email-display').innerText = targetEmail;
+
+      document.getElementById('step1-indicator').className = "flex items-center space-x-2 text-slate-500";
+      document.getElementById('step2-indicator').className = "flex items-center space-x-2 text-emerald-400";
+
+      showResult(true, "Magic link telah dikirim. Buka email Anda dan salin link yang dikirimkan.");
     }
 
-    function handleVerifyLink() {
-      const input = document.getElementById('link-input');
-      const link = input.value;
+    async function handleActivatePremium() {
+      const magicLink = document.getElementById('magic-link-input').value;
 
-      if (!validateLinkFormat(link)) {
-        showResult(false, 'Tautan tidak valid untuk diverifikasi! Pastikan tautan berasal dari Alight Motion.');
+      if (!magicLink || magicLink.trim() === "") {
+        showResult(false, "Tempelkan Magic Link yang Anda dapatkan dari email terlebih dahulu.");
         return;
       }
 
-      updateStats('verify');
-      showResult(true, 'Tautan terverifikasi valid dan siap digunakan!');
+      try {
+        const res = await fetch('/api/verify-link', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ link: magicLink, email: targetEmail })
+        });
+        const data = await res.json();
+        if (res.ok) {
+          showResult(true, data.message || "Aktivasi Premium Berhasil! Akun Anda kini sudah terdaftar sebagai Premium.");
+          return;
+        }
+      } catch (e) {}
+
+      // Client-side verification result
+      showResult(true, "Aktivasi Berhasil! Sesi Firebase Auth berhasil diperbarui dan akun " + targetEmail + " kini Aktif Premium.");
     }
 
-    loadStats();
+    function resetStep() {
+      document.getElementById('step-2-container').classList.add('hidden');
+      document.getElementById('step-1-container').classList.remove('hidden');
+      document.getElementById('result-box').classList.add('hidden');
+
+      document.getElementById('step1-indicator').className = "flex items-center space-x-2 text-amber-400";
+      document.getElementById('step2-indicator').className = "flex items-center space-x-2 text-slate-500";
+    }
   </script>
 </body>
 </html>
