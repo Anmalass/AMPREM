@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AM Reverse - ANMA</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col justify-between relative overflow-x-hidden">
+
+  <!-- Watermark Background ANMA -->
+  <div class="fixed inset-0 pointer-events-none flex items-center justify-center z-0 opacity-5 select-none">
+    <h1 class="text-[20vw] font-black tracking-widest text-white">ANMA</h1>
+  </div>
+
+  <!-- Header Section -->
+  <header class="relative z-10 border-b border-slate-800 bg-slate-900/50 backdrop-blur-md px-6 py-4 flex justify-between items-center">
+    <div class="flex items-center space-x-2">
+      <div class="bg-indigo-600 p-2 rounded-lg text-white">
+        <i data-lucide="zap"></i>
+      </div>
+      <span class="font-bold text-xl tracking-wide bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent">
+        AM Reverse
+      </span>
+    </div>
+
+    <!-- Status Badge -->
+    <div id="status-badge" class="flex items-center space-x-2 text-xs font-medium px-3 py-1 rounded-full bg-slate-800 text-slate-400 border border-slate-700">
+      <span class="w-2 h-2 rounded-full bg-slate-500 animate-pulse" id="status-dot"></span>
+      <span id="status-text">Memeriksa API...</span>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="relative z-10 max-w-4xl mx-auto w-full px-4 py-10 flex-1 flex flex-col justify-center">
+    
+    <div class="text-center mb-8">
+      <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight mb-2">
+        Alight Motion Link Service
+      </h2>
+      <p class="text-slate-400 text-sm sm:text-base">
+        Proses dan verifikasi link preset Alight Motion dengan mudah dan cepat.
+      </p>
+    </div>
+
+    <!-- Stats Bar -->
+    <div class="grid grid-cols-2 gap-4 mb-8">
+      <div class="bg-slate-900/60 border border-slate-800 rounded-xl p-4 text-center backdrop-blur-sm">
+        <p class="text-xs text-slate-400 mb-1">Total Permintaan</p>
+        <p id="stat-requests" class="text-2xl font-bold text-indigo-400">0</p>
+      </div>
+      <div class="bg-slate-900/60 border border-slate-800 rounded-xl p-4 text-center backdrop-blur-sm">
+        <p class="text-xs text-slate-400 mb-1">Terverifikasi</p>
+        <p id="stat-verifications" class="text-2xl font-bold text-emerald-400">0</p>
+      </div>
+    </div>
+
+    <!-- Card Form -->
+    <div class="bg-slate-900/80 border border-slate-800 rounded-2xl p-6 sm:p-8 shadow-2xl backdrop-blur-md">
+      <div class="space-y-4">
+        <label class="block text-sm font-medium text-slate-300">Masukkan Link Alight Motion</label>
+        <div class="relative">
+          <input 
+            type="url" 
+            id="link-input"
+            placeholder="https://alight.link/xxxx atau https://alightcreative.com/..." 
+            class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3.5 pl-11 text-slate-200 placeholder-slate-600 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition"
+          >
+          <div class="absolute left-3.5 top-3.5 text-slate-500">
+            <i data-lucide="link"></i>
+          </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
+          <button 
+            onclick="handleVerifyLink()" 
+            class="w-full bg-slate-800 hover:bg-slate-700 text-slate-200 font-semibold py-3 px-4 rounded-xl border border-slate-700 flex items-center justify-center space-x-2 transition">
+            <i data-lucide="shield-check" class="w-4 h-4"></i>
+            <span>Verifikasi Link</span>
+          </button>
+          <button 
+            onclick="handleSendLink()" 
+            class="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-semibold py-3 px-4 rounded-xl shadow-lg shadow-indigo-600/30 flex items-center justify-center space-x-2 transition">
+            <i data-lucide="send" class="w-4 h-4"></i>
+            <span>Kirim Link</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Result Alert -->
+      <div id="result-box" class="hidden mt-6 p-4 rounded-xl text-sm border flex items-start space-x-3">
+        <div id="result-icon" class="mt-0.5"></div>
+        <div id="result-message" class="flex-1 break-all"></div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Footer dengan Watermark ANMA -->
+  <footer class="relative z-10 border-t border-slate-800/80 bg-slate-950/80 py-4 text-center text-xs text-slate-500">
+    <div class="flex items-center justify-center space-x-2">
+      <span>Powered by</span>
+      <span class="font-bold tracking-wider text-slate-300 border border-slate-700 px-2 py-0.5 rounded bg-slate-900">
+        ANMA
+      </span>
+      <span>&copy; 2026 AM Reverse Service</span>
+    </div>
+  </footer>
+
+  <script>
+    lucide.createIcons();
+
+    async function checkApiStatus() {
+      const badge = document.getElementById('status-badge');
+      const dot = document.getElementById('status-dot');
+      const text = document.getElementById('status-text');
+
+      try {
+        const res = await fetch('/api/status');
+        const data = await res.json();
+
+        if (data.status === 'online') {
+          badge.className = "flex items-center space-x-2 text-xs font-medium px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20";
+          dot.className = "w-2 h-2 rounded-full bg-emerald-400";
+          text.innerText = "API Online v" + data.version;
+        }
+      } catch (err) {
+        badge.className = "flex items-center space-x-2 text-xs font-medium px-3 py-1 rounded-full bg-rose-500/10 text-rose-400 border border-rose-500/20";
+        dot.className = "w-2 h-2 rounded-full bg-rose-400";
+        text.innerText = "API Offline";
+      }
+    }
+
+    async function loadStats() {
+      try {
+        const res = await fetch('/api/stats');
+        const data = await res.json();
+        if (data.status === 'success') {
+          document.getElementById('stat-requests').innerText = data.data.totalRequests || 0;
+          document.getElementById('stat-verifications').innerText = data.data.successfulVerifications || 0;
+        }
+      } catch (err) {
+        console.error("Gagal memuat statistik", err);
+      }
+    }
+
+    function showResult(success, message) {
+      const box = document.getElementById('result-box');
+      const icon = document.getElementById('result-icon');
+      const msg = document.getElementById('result-message');
+
+      box.classList.remove('hidden', 'bg-emerald-500/10', 'border-emerald-500/30', 'text-emerald-300', 'bg-rose-500/10', 'border-rose-500/30', 'text-rose-300');
+      
+      if (success) {
+        box.classList.add('bg-emerald-500/10', 'border-emerald-500/30', 'text-emerald-300');
+        icon.innerHTML = `<i data-lucide="check-circle" class="w-5 h-5 text-emerald-400"></i>`;
+      } else {
+        box.classList.add('bg-rose-500/10', 'border-rose-500/30', 'text-rose-300');
+        icon.innerHTML = `<i data-lucide="alert-circle" class="w-5 h-5 text-rose-400"></i>`;
+      }
+
+      msg.innerText = message;
+      lucide.createIcons();
+    }
+
+    async function handleSendLink() {
+      const link = document.getElementById('link-input').value;
+      try {
+        const res = await fetch('/api/send-link', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ link })
+        });
+        const data = await res.json();
+
+        if (res.ok) {
+          showResult(true, data.message);
+          loadStats();
+        } else {
+          showResult(false, data.message || 'Terjadi kesalahan.');
+        }
+      } catch (err) {
+        showResult(false, 'Gagal terhubung ke API server.');
+      }
+    }
+
+    async function handleVerifyLink() {
+      const link = document.getElementById('link-input').value;
+      try {
+        const res = await fetch('/api/verify-link', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ link })
+        });
+        const data = await res.json();
+
+        if (res.ok) {
+          showResult(true, data.message);
+          loadStats();
+        } else {
+          showResult(false, data.message || 'Terjadi kesalahan.');
+        }
+      } catch (err) {
+        showResult(false, 'Gagal terhubung ke API server.');
+      }
+    }
+
+    checkApiStatus();
+    loadStats();
+  </script>
+</body>
+</html>
